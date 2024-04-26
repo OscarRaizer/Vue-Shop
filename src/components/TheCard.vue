@@ -9,7 +9,6 @@ defineProps({
   onClickFavorite: Function
 })
 </script>
-
 <template>
   <div
     class="flex flex-col justify-between bg-white px-8 py-5 relative border-2 rounded-[40px] border-slate-100 hover:-translate-y-1 hover:shadow-xl transition cursor-pointer"

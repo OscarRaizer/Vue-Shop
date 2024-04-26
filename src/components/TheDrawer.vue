@@ -23,7 +23,7 @@ import CartItemList from './CartItemList.vue'
         class="flex gap-2 justify-center items-center bg-lime-500 text-white p-4 rounded-2xl hover:scale-105 transition hover:bg-lime-600 active:bg-lime-700 disabled:bg-slate-400 disabled:cursor-not-allowed disabled:scale-100"
       >
         <span>Оформить заказ</span>
-        <img class="fill-zinc-200" src="/arrow-right.svg" alt="arrow" />
+        <img class="fill-zinc-200" src="/arrow-next.svg" alt="arrow" />
       </button>
     </div>
   </div>
