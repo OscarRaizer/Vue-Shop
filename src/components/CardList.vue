@@ -13,11 +13,11 @@ const onClickFavorite = () => {
 <template>
   <div class="px-14 py-11 grid grid-cols-4 gap-10">
     <TheCard
-      :is-added="true"
-      :is-favorite="true"
+      :is-added="false"
+      :is-favorite="false"
       :price="14444"
       imageUrl="/like-fill.svg"
-      title="Air Max"
+      title="Мужские Кроссовки Nike Blazer Mid Suede"
       :onClickAdd="onClickAdd"
       :onClickFavorite="onClickFavorite"
     />
