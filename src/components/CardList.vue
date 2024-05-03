@@ -1,25 +1,19 @@
 <script setup>
 import TheCard from './TheCard.vue'
 
-const onClickAdd = () => {
-  alert('Added')
-}
-
-const onClickFavorite = () => {
-  alert('Favorite')
-}
+defineProps({
+  items: Array
+})
 </script>
 
 <template>
   <div class="px-14 py-11 grid grid-cols-4 gap-10">
     <TheCard
-      :is-added="false"
-      :is-favorite="false"
-      :price="14444"
-      imageUrl="/like-fill.svg"
-      title="Мужские Кроссовки Nike Blazer Mid Suede"
-      :onClickAdd="onClickAdd"
-      :onClickFavorite="onClickFavorite"
+      v-for="item in items"
+      :key="item.id"
+      :price="item.price"
+      :imageUrl="item.imageUrl"
+      :title="item.title"
     />
   </div>
 </template>

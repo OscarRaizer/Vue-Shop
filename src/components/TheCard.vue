@@ -21,7 +21,7 @@ defineProps({
       alt="favourite"
       @click="onClickFavorite"
     />
-    <img class="h-[133px] w-fit pb-3.5" src="/sneakers/sneakers-1.jpg" alt="Sneaker" />
+    <img class="h-[133px] w-fit pb-3.5" :src="imageUrl" alt="Sneaker" />
     <p class="mb-3.5">{{ title }}</p>
     <div class="flex justify-between items-center">
       <div class="flex flex-col">
