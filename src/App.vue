@@ -16,25 +16,31 @@ const onChangeSelect = (event) => {
   filters.sortBy = event.target.value
 }
 
-onMounted(async () => {
-  try {
-    const { data } = await axios.get('https://74ebad0d9d6b3a51.mokky.dev/items')
-    items.value = data
-  } catch (err) {
-    console.log(err)
-  }
-})
+const onChangeSearchInput = (event) => {
+  filters.searchQuery = event.target.value
+}
 
-watch(filters, async () => {
+const fetchItems = async () => {
   try {
-    const { data } = await axios.get(
-      'https://74ebad0d9d6b3a51.mokky.dev/items?sortBy=' + filters.sortBy
-    )
+    const params = {
+      sortBy: filters.sortBy
+    }
+
+    if (filters.searchQuery) {
+      params.title = `*${filters.searchQuery}*`
+    }
+
+    const { data } = await axios.get(`https://74ebad0d9d6b3a51.mokky.dev/items/`, {
+      params
+    })
     items.value = data
   } catch (err) {
     console.log(err)
   }
-})
+}
+
+onMounted(fetchItems)
+watch(filters, fetchItems)
 </script>
 
 <template>
@@ -55,6 +61,7 @@ watch(filters, async () => {
         <div class="flex items-center gap-3 relative">
           <img class="absolute left-3" src="/search.svg" alt="" />
           <input
+            @input="onChangeSearchInput"
             class="border rounded-md outline-none focus:border-gray-400 p-2 pl-10"
             type="text"
             placeholder="Поиск..."
