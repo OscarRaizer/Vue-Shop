@@ -2,8 +2,11 @@
 import TheCard from './TheCard.vue'
 
 defineProps({
-  items: Array
+  items: Array,
+  isFavourite: Boolean
 })
+
+const emit = defineEmits(['addToFavourite'])
 </script>
 
 <template>
@@ -11,9 +14,12 @@ defineProps({
     <TheCard
       v-for="item in items"
       :key="item.id"
+      :id="item.id"
       :price="item.price"
       :imageUrl="item.imageUrl"
       :title="item.title"
+      :onClickFavourite="() => emit('addToFavourite', item)"
+      :isFavourite="item.isFavourite"
     />
   </div>
 </template>

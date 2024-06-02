@@ -13,19 +13,19 @@
       <div>
         <ul class="flex gap-8">
           <li
-            class="flex items-center justify-center gap-2.5 text-slate-600 hover:text-black cursor-pointer"
+            class="flex items-center justify-center gap-2.5 text-slate-600 hover:text-black hover:border-b-4 cursor-pointer"
           >
             <img src="/cart.svg" alt="" />
             <span class="text-base font-semibold">1205p</span>
           </li>
           <li
-            class="flex items-center justify-center gap-2.5 text-slate-500 hover:text-black cursor-pointer"
+            class="flex items-center justify-center gap-2.5 text-slate-500 hover:text-black cursor-pointer hover:border-b-4"
           >
             <img src="/heart.svg" alt="" />
             <span class="text-base">Закладки</span>
           </li>
           <li
-            class="flex items-center justify-center gap-2.5 text-slate-500 hover:text-black cursor-pointer"
+            class="flex items-center justify-center gap-2.5 text-slate-500 hover:text-black cursor-pointer hover:border-b-4"
           >
             <img src="/profile.svg" alt="" />
             <span class="text-base">Профиль</span>

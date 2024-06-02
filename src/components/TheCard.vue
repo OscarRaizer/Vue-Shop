@@ -1,12 +1,13 @@
 <script setup>
 defineProps({
+  id: Number,
   imageUrl: String,
   title: String,
   price: Number,
-  isFavorite: Boolean,
+  isFavourite: Boolean,
   isAdded: Boolean,
   onClickAdd: Function,
-  onClickFavorite: Function
+  onClickFavourite: Function
 })
 </script>
 <template>
@@ -14,12 +15,12 @@ defineProps({
     class="flex flex-col justify-between bg-white px-8 py-5 relative border-2 rounded-[40px] border-slate-100 hover:-translate-y-1 hover:shadow-xl transition cursor-pointer"
   >
     <img
-      class="absolute top-5 hover:scale-125"
+      class="absolute top-5 hover:scale-125 transition duration-300"
       width="32"
       height="32"
-      :src="!isFavorite ? '/like.svg' : '/like-fill.svg'"
+      :src="!isFavourite ? '/like.svg' : '/like-fill.svg'"
       alt="favourite"
-      @click="onClickFavorite"
+      @click="onClickFavourite"
     />
     <img class="h-[133px] w-fit pb-3.5" :src="imageUrl" alt="Sneaker" />
     <p class="mb-3.5">{{ title }}</p>
