@@ -37,13 +37,24 @@ const fetchFavourites = async () => {
       }
     })
   } catch (err) {
-    console.log(err)
+    // console.log(err)
   }
 }
 
 const addToFavourite = async (item) => {
   try {
-    const { data } = await axios.get(`https://74ebad0d9d6b3a51.mokky.dev/favourites`)
+    if (!item.isFavourite) {
+      const obj = {
+        cardId: item.id
+      }
+      item.isFavourite = true
+      const { data } = await axios.post(`https://74ebad0d9d6b3a51.mokky.dev/favourites`, obj)
+      item.favouriteId = data.id
+    } else {
+      item.isFavourite = false
+      await axios.delete(`https://74ebad0d9d6b3a51.mokky.dev/favourites/${item.favouriteId}`)
+      item.favouriteId = null
+    }
   } catch (err) {
     console.log(err)
   }
@@ -65,6 +76,7 @@ const fetchItems = async () => {
     items.value = data.map((obj) => ({
       ...obj,
       isFavourite: false,
+      favouriteId: null,
       isAdded: false
     }))
   } catch (err) {
@@ -85,7 +97,7 @@ watch(filters, fetchItems)
     <HeaderApp />
     <div class="px-14 py-8 flex items-center justify-between">
       <h2 class="text-3xl font-bold">Все кроссовки</h2>
-      <div class="flex gap-8">
+      <div class="flex gap-8 overflow-hidden">
         <select
           @change="onChangeSelect"
           class="outline-0 border rounded-md focus:border-gray-400 p-2 px-2 cursor-pointer"
