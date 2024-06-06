@@ -1,8 +1,12 @@
-<script setup></script>
+<script setup>
+import { inject } from 'vue'
 
+const { closeDrawer } = inject('cardActions')
+</script>
 <template>
   <div class="flex items-center gap-5 pb-10">
     <svg
+      @click="closeDrawer"
       class="rotate-180 cursor-pointer opacity-50 hover:-translate-x-2 transition hover:opacity-100"
       width="25"
       height="20"

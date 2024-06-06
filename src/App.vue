@@ -1,11 +1,22 @@
 <script setup>
-import { onMounted, reactive, ref, watch } from 'vue'
+import { onMounted, provide, reactive, ref, watch } from 'vue'
 import axios from 'axios'
 import HeaderApp from './components/HeaderApp.vue'
 import CardList from './components/CardList.vue'
+import TheDrawer from './components/TheDrawer.vue'
 // import TheDrawer from './components/TheDrawer.vue'
 
 const items = ref([])
+
+const drawerDisplay = ref(false)
+
+const openDrawer = () => {
+  drawerDisplay.value = true
+}
+
+const closeDrawer = () => {
+  drawerDisplay.value = false
+}
 
 const filters = reactive({
   sortBy: '',
@@ -37,7 +48,7 @@ const fetchFavourites = async () => {
       }
     })
   } catch (err) {
-    // console.log(err)
+    console.log(err)
   }
 }
 
@@ -89,12 +100,17 @@ onMounted(async () => {
   await fetchFavourites()
 })
 watch(filters, fetchItems)
+
+provide('cardActions', {
+  openDrawer,
+  closeDrawer
+})
 </script>
 
 <template>
-  <!--  <TheDrawer />-->
+  <TheDrawer v-if="drawerDisplay" />
   <div class="bg-white w-4/5 mx-auto rounded-t-3xl shadow-xl h-auto mt-20">
-    <HeaderApp />
+    <HeaderApp @open-drawer="openDrawer" />
     <div class="px-14 py-8 flex items-center justify-between">
       <h2 class="text-3xl font-bold">Все кроссовки</h2>
       <div class="flex gap-8 overflow-hidden">
@@ -117,7 +133,7 @@ watch(filters, fetchItems)
         </div>
       </div>
     </div>
-    <CardList :items="items" @addToFavourite="addToFavourite" />
+    <CardList :items="items" @add-to-favourite="addToFavourite" />
   </div>
 </template>
 
