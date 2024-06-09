@@ -6,7 +6,7 @@ defineProps({
   isFavourite: Boolean
 })
 
-const emit = defineEmits(['addToFavourite'])
+const emit = defineEmits(['addToFavourite', 'addToCart'])
 </script>
 
 <template>
@@ -20,6 +20,8 @@ const emit = defineEmits(['addToFavourite'])
       :title="item.title"
       :onClickFavourite="() => emit('addToFavourite', item)"
       :isFavourite="item.isFavourite"
+      :onClickAdd="() => emit('addToCart', item)"
+      :is-added="item.isAdded"
     />
   </div>
 </template>

@@ -7,6 +7,25 @@ import TheDrawer from './components/TheDrawer.vue'
 // import TheDrawer from './components/TheDrawer.vue'
 
 const items = ref([])
+const cart = ref([])
+
+const addToCart = (item) => {
+  cart.value.push(item)
+  item.isAdded = true
+}
+
+const removeFromCart = (item) => {
+  cart.value.splice(cart.value.indexOf(item), 1)
+  item.isAdded = false
+}
+
+const onClickAddPlus = (item) => {
+  if (!item.isAdded) {
+    addToCart(item)
+  } else {
+    removeFromCart(item)
+  }
+}
 
 const drawerDisplay = ref(false)
 
@@ -101,9 +120,12 @@ onMounted(async () => {
 })
 watch(filters, fetchItems)
 
-provide('cardActions', {
+provide('cart', {
+  cart,
   openDrawer,
-  closeDrawer
+  closeDrawer,
+  addToCart,
+  removeFromCart
 })
 </script>
 
@@ -133,7 +155,7 @@ provide('cardActions', {
         </div>
       </div>
     </div>
-    <CardList :items="items" @add-to-favourite="addToFavourite" />
+    <CardList :items="items" @add-to-favourite="addToFavourite" @add-to-cart="onClickAddPlus" />
   </div>
 </template>
 

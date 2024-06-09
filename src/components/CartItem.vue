@@ -1,13 +1,22 @@
-<script setup></script>
+<script setup>
+const emit = defineEmits(['onClickRemove'])
+
+defineProps({
+  id: Number,
+  title: String,
+  imageUrl: String,
+  price: Number
+})
+</script>
 
 <template>
   <div class="flex gap-5 content-center border border-slate-200 p-5 rounded-2xl">
-    <img class="w-20" src="/sneakers/sneakers-4.jpg" alt="Sneaker" />
+    <img class="w-20" :src="imageUrl" :alt="title" />
     <div class="flex flex-col gap-1">
-      <span class="font-bold">Мужские Кроссовки Nike Air Max 270</span>
+      <span>{{ title }}</span>
       <div class="flex justify-between">
-        <span>12 999 руб.</span>
-        <img class="rotate-45 hover:scale-125" src="/plus.svg" alt="" />
+        <span class="font-bold">{{ price }}</span>
+        <img @click="emit('onClickRemove')" class="hover:scale-110" src="/close.svg" alt="" />
       </div>
     </div>
   </div>
