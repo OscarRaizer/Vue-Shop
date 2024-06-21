@@ -1,5 +1,5 @@
 <script setup>
-import { onMounted, provide, reactive, ref, watch } from 'vue'
+import { computed, onMounted, provide, reactive, ref, watch } from 'vue'
 import axios from 'axios'
 import HeaderApp from './components/HeaderApp.vue'
 import CardList from './components/CardList.vue'
@@ -36,6 +36,10 @@ const openDrawer = () => {
 const closeDrawer = () => {
   drawerDisplay.value = false
 }
+
+const totalPrice = computed(() => cart.value.reduce((acc, item) => acc + item.price, 0))
+
+const vatPrice = computed(() => Math.round(totalPrice.value * 10) / 100)
 
 const filters = reactive({
   sortBy: '',
@@ -114,6 +118,21 @@ const fetchItems = async () => {
   }
 }
 
+const createOrder = async () => {
+  try {
+    const { data } = await axios.post(`https://74ebad0d9d6b3a51.mokky.dev/orders`, {
+      items: cart.value,
+      totalPrice: totalPrice.value
+    })
+
+    cart.value = []
+
+    return data
+  } catch (err) {
+    console.log(err)
+  }
+}
+
 onMounted(async () => {
   await fetchItems()
   await fetchFavourites()
@@ -130,9 +149,14 @@ provide('cart', {
 </script>
 
 <template>
-  <TheDrawer v-if="drawerDisplay" />
+  <TheDrawer
+    :totalPrice="totalPrice"
+    :vat-price="vatPrice"
+    v-if="drawerDisplay"
+    @create-order="createOrder"
+  />
   <div class="bg-white w-4/5 mx-auto rounded-t-3xl shadow-xl h-auto mt-20">
-    <HeaderApp @open-drawer="openDrawer" />
+    <HeaderApp :total-price="totalPrice" @open-drawer="openDrawer" />
     <div class="px-14 py-8 flex items-center justify-between">
       <h2 class="text-3xl font-bold">Все кроссовки</h2>
       <div class="flex gap-8 overflow-hidden">

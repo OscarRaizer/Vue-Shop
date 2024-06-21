@@ -16,7 +16,12 @@ defineProps({
       <span>{{ title }}</span>
       <div class="flex justify-between">
         <span class="font-bold">{{ price }}</span>
-        <img @click="emit('onClickRemove')" class="hover:scale-110" src="/close.svg" alt="" />
+        <img
+          @click="emit('onClickRemove')"
+          class="hover:scale-110 cursor-pointer"
+          src="/close.svg"
+          alt=""
+        />
       </div>
     </div>
   </div>
