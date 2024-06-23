@@ -4,7 +4,6 @@ import axios from 'axios'
 import HeaderApp from './components/HeaderApp.vue'
 import CardList from './components/CardList.vue'
 import TheDrawer from './components/TheDrawer.vue'
-// import TheDrawer from './components/TheDrawer.vue'
 
 const items = ref([])
 const cart = ref([])
@@ -138,6 +137,13 @@ onMounted(async () => {
   await fetchFavourites()
 })
 watch(filters, fetchItems)
+
+watch(cart, () => {
+  items.value = items.value.map((item) => ({
+    ...item,
+    isAdded: false
+  }))
+})
 
 provide('cart', {
   cart,
