@@ -13,7 +13,10 @@ const emit = defineEmits(['createOrder'])
 
 <template>
   <div class="fixed w-full h-full bg-black opacity-80 z-10 top-0"></div>
-  <div class="flex flex-col bg-white z-20 fixed top-0 right-0 w-1/4 h-full p-8 opacity-100">
+  <div
+    class="flex flex-col bg-white z-20 fixed top-0 right-0 w-1/4 h-full p-8 opacity-100"
+    v-auto-animate
+  >
     <DrawerHead />
 
     <InfoBlock
