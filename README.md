@@ -22,7 +22,7 @@ Vue-Shop is an online sneaker store built with Vue 3, providing a seamless shopp
 - **[REST API](https://mokky.dev/)**
 
 - **Auto-animate**
-- **Tailwind CSS**ut.
+- **Tailwind CSS**
 
 - **Vite**
 - **Prettier**
