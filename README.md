@@ -1,35 +1,30 @@
 # Vue-Shop
 
-This template should help get you started developing with Vue 3 in Vite.
+Vue-Shop is an online sneaker store built with Vue 3, providing a seamless shopping experience. The project features a modern design, dynamic data fetching, and various interactive components to enhance user engagement.
 
-## Recommended IDE Setup
+## Features
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+- **Product Listing**
+- **Favorites**
+- **Shopping Cart**
+- **Cart and Favorites Pages**
+- **Filters and Sorting**
+- **Animations**
+- **LocalStorage**
+- **[Send order](https://74ebad0d9d6b3a51.mokky.dev/orders)** 
 
-## Customize configuration
+## Technologies Used
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+- **JS**
+- **Vue 3**
+- **Vue Router**
+- **Axios**
+- **[REST API](https://mokky.dev/)**
 
-## Project Setup
+- **Auto-animate**
+- **Tailwind CSS**ut.
 
-```sh
-npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Compile and Minify for Production
-
-```sh
-npm run build
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
-```
+- **Vite**
+- **Prettier**
+- **ESlint**
+- **Vercel**
